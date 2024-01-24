@@ -4,9 +4,9 @@ public class Main {
     public static int bossHealth = 700;
     public static int bossDamage = 50;
     public static String  bossDefence;
-    public static int[] heroesHealth = {270, 260, 250,240};
+    public static int[] heroesHealth = {270, 260, 250,280};
     public static int[] heroesDamage = {10, 15, 20,30};
-    public static String[] heroesAttackType = {"Physical", "Magical", "Kinetic","Medic"};
+    public static String[] heroesAttackType = {"Physical", "Magical", "Kinetic", "Medic"};
     public static int roundNumber;
 
     public static void main(String[] args) {
@@ -56,12 +56,12 @@ public class Main {
 
     public static void chooseBossDefence() {
         Random random = new Random();
-        int randomIndex = random.nextInt(heroesAttackType.length); // 0,1,2
+        int randomIndex = random.nextInt(heroesAttackType.length - 1); // 0,1,2
         bossDefence = heroesAttackType[randomIndex];
     }
 
     public static void heroesAttack() {
-        for (int i = 0; i < heroesDamage.length; i++) {
+        for (int i = 0; i < heroesDamage.length - 1;  i++) {
             if (heroesHealth[i] > 0 && bossHealth > 0) {
                 int damage = heroesDamage[i];
                 if (bossDefence == heroesAttackType[i]) {
@@ -79,7 +79,7 @@ public class Main {
         }
     }
 
-    public static void bossAttacks() {
+   public static void bossAttacks() {
         for (int i = 0; i < heroesHealth.length; i++) {
             if (heroesHealth[i] > 0) {
                 if (heroesHealth[i] - bossDamage < 0) {
@@ -96,8 +96,8 @@ public class Main {
             for (int i = 0; i < heroesHealth.length; i++) {
                 if (heroesHealth[i] < 100 && i !=medicIndex && heroesHealth[i] > 0) {
                      heroesHealth[i]+=heroesDamage[3];
-                    System.out.println("Medic heals " + heroesAttackType[i] + " for " + heroesDamage[3] + " HP." );
-                    break;
+                       System.out.println("Medic heals " + heroesAttackType[i] + " for " + heroesDamage[3] + " HP." );
+                         break;
                 }
             }
 
